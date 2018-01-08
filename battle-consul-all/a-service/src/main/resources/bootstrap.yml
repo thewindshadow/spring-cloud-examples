@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: a-service
+  cloud:
+    consul:
+      discovery:
+        prefer-ip-address: true #在注册时使用ip地址而不是主机名
+        enabled: true #默认是true启用Consul发现客户端
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        watch:
+          enabled: true
+  sleuth:
+    sampler:
+      percentage: 1  #配置ZipKin使用导出的跨度百分比,默认为0.1即10%，你可能会认为Sleuth不工作，因为它省略了一些跨度。
+  zipkin:
+    base-url: http://localhost:9411/
